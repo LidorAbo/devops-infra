@@ -39,16 +39,16 @@ module "eks" {
   subnet_ids = module.vpc.private_subnets
   # EKS Managed Node Group(s)
   eks_managed_node_group_defaults = {
-    instance_types = ["t2.micro"]   
+    instance_types                        = ["t2.micro"]
     attach_cluster_primary_security_group = true
   }
 
   eks_managed_node_groups = {
-      nodes = {
-        ami_type     = "AL2023_x86_64_STANDARD"
-        min_size     = 1
-        max_size     = 20
-        desired_size = 20
-      }
+    nodes = {
+      ami_type     = "AL2023_x86_64_STANDARD"
+      min_size     = 1
+      max_size     = 20
+      desired_size = 20
     }
+  }
 }
