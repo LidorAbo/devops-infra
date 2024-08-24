@@ -1,7 +1,7 @@
-resource "aws_security_group" "allow_ssh" {
+resource "aws_security_group" "allow_http" {
   name        = "http_access"
   description = "Allow HTTP from my public IP"
-  vpc_id      = data.aws_vpc.vpc.id
+  vpc_id      = module.vpc.id
 
   ingress {
     description = "HTTP access from my IP"

@@ -13,10 +13,10 @@ module "eks" {
     github_actions = {
       principal_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:role/github-actions-cicd-role"
       policy_associations = {
-        example = {
+        policy = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
           access_scope = {
-            namespaces = ["default"]
+            namespaces = ["*"]
             type       = "namespace"
           }
         }
