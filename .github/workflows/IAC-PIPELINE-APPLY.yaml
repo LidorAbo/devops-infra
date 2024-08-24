@@ -1,18 +1,18 @@
 name: Terraform Apply
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - '*.tf'
+  workflow_run:
+    workflows:
+      - "Terraform Plan"
+    types:
+      - completed
   workflow_dispatch:
 env:
   AWS_REGION: eu-west-1
 jobs:
   terraform-apply:
     runs-on: ubuntu-latest
-
+    if: github.ref == 'refs/heads/main' 
     permissions:
       id-token: write
       contents: read
