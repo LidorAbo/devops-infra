@@ -19,7 +19,7 @@ jobs:
 
     steps:
       - name: print branch name
-        run: echo ${{ github.ref_name }}
+        run: echo ${{ github.event.workflow_run.head_branch }}
       - name: Checkout code
         uses: actions/checkout@v3
 
