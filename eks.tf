@@ -5,7 +5,6 @@ module "eks" {
   cluster_name                             = local.cluster_name
   cluster_endpoint_public_access           = true
   enable_cluster_creator_admin_permissions = true
-  cluster_endpoint_public_access_cidrs     = [local.my_public_ipv4]
   node_security_group_tags = {
     "kubernetes.io/cluster/${local.cluster_name}" = null
   }
@@ -16,10 +15,22 @@ module "eks" {
         policy = {
           policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSAdminPolicy"
           access_scope = {
-            namespaces = ["*"]
+            namespaces = ["default"]
             type       = "namespace"
           }
         }
+      }
+    }
+    admin = {
+      principal_arn = "arn:aws:iam::${data.aws_caller_identity.current.account_id}:user/admin"
+      policy_associations = {
+        policy = {
+          policy_arn = "arn:aws:eks::aws:cluster-access-policy/AmazonEKSClusterAdminPolicy"
+          access_scope = {
+            type = "cluster"
+          }
+        }
+
       }
     }
   }
@@ -48,7 +59,7 @@ module "eks" {
       ami_type     = "AL2023_x86_64_STANDARD"
       min_size     = 1
       max_size     = 20
-      desired_size = 20
+      desired_size = 2
     }
   }
 }
