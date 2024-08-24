@@ -18,6 +18,8 @@ jobs:
       contents: read
 
     steps:
+      - name: print branch name
+        run: echo ${{ github.ref_name }}
       - name: Checkout code
         uses: actions/checkout@v3
 
