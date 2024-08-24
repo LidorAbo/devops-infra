@@ -12,7 +12,7 @@ env:
 jobs:
   terraform-apply:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' 
+    if: github.ref_name == 'main' 
     permissions:
       id-token: write
       contents: read
