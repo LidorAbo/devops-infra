@@ -4,6 +4,3 @@ variable "region" {
 variable "company_name" {
   default = "checkpoint"
 }
-variable "test" {
-  default = "test"
-}

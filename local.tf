@@ -1,6 +1,6 @@
 locals {
-  http_port = 80
-  cluster_name = "${var.company_name}-eks"
+  http_port              = 80
+  cluster_name           = "${var.company_name}-eks"
   vpc_cidr               = "192.168.0.0/16"
   additional_bit_to_cidr = 8
   azs                    = ["${var.region}a", "${var.region}b"]

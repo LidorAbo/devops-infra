@@ -26,4 +26,4 @@ data "aws_iam_policy_document" "ecr_helm_policy" {
     resources = ["arn:aws:eks:*:${data.aws_caller_identity.current.account_id}:cluster/${var.company_name}-eks"]
   }
 }
-data aws_caller_identity "current" {}
+data "aws_caller_identity" "current" {}
